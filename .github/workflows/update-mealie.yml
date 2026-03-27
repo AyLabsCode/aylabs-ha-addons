@@ -1,0 +1,47 @@
+name: Auto-update Mealie version
+
+on:
+  schedule:
+    - cron: "0 6 * * *"  # every day at 6am UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get latest Mealie release
+        id: mealie
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/mealie-recipes/mealie/releases/latest | jq -r '.tag_name')
+          echo "version=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Get current version in build.yaml
+        id: current
+        run: |
+          CURRENT=$(grep -m1 'mealie:' mealie/build.yaml | grep -oP 'v[\d.]+')
+          echo "version=$CURRENT" >> $GITHUB_OUTPUT
+
+      - name: Update files if new version
+        if: steps.mealie.outputs.version != steps.current.outputs.version
+        run: |
+          NEW="${{ steps.mealie.outputs.version }}"
+          # Update build.yaml
+          sed -i "s|mealie-recipes/mealie:v[0-9.]*|mealie-recipes/mealie:${NEW}|g" mealie/build.yaml
+          # Update config.yaml version (strip the leading 'v')
+          SEMVER="${NEW#v}"
+          sed -i "s/^version: \"[0-9.]*\"/version: \"${SEMVER}\"/" mealie/config.yaml
+
+      - name: Commit and push
+        if: steps.mealie.outputs.version != steps.current.outputs.version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mealie/build.yaml mealie/config.yaml
+          git commit -m "chore: update Mealie to ${{ steps.mealie.outputs.version }}"
+          git push
