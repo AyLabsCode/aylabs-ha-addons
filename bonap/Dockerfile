@@ -24,12 +24,11 @@ FROM --platform=linux/amd64 node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy dependency manifests first (better layer caching)
-COPY package.json package-lock.json ./
-RUN npm ci
+# Clone the Bonap source from the main repository
+RUN apk add --no-cache git && \
+    git clone --depth 1 https://github.com/AymericLeFeyer/bonap.git .
 
-# Copy source — context must be the repository root
-COPY . .
+RUN npm ci
 
 # Build Vite — VITE_* values are injected at runtime via window.__ENV__.
 # Do NOT pass real secrets here; the image must remain generic.
@@ -47,10 +46,10 @@ RUN apk add --no-cache nginx gettext jq
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # nginx config template — ${MEALIE_INTERNAL_URL} is substituted at startup
-COPY ha-addon/bonap/nginx.conf /etc/nginx/templates/default.conf.template
+COPY bonap/nginx.conf /etc/nginx/templates/default.conf.template
 
 # Addon entrypoint: reads bashio options → writes env-config.js → starts nginx
-COPY ha-addon/bonap/run.sh /run.sh
+COPY bonap/run.sh /run.sh
 RUN chmod +x /run.sh
 
 EXPOSE 3000

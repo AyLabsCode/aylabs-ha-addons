@@ -37,8 +37,3 @@ schema:
 homeassistant_api: false
 hassio_api: false
 
-map:
-  - data:rw
-
-# No privileged access needed
-privileged: []

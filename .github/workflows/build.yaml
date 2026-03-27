@@ -1,0 +1,61 @@
+name: Build & Publish Add-on
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "bonap/**"
+      - ".github/workflows/build.yaml"
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build ${{ matrix.arch }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    strategy:
+      matrix:
+        arch: [aarch64, amd64, armv7]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Map arch to Docker platform
+        id: platform
+        run: |
+          case "${{ matrix.arch }}" in
+            amd64)   echo "platform=linux/amd64"   >> $GITHUB_OUTPUT ;;
+            aarch64) echo "platform=linux/arm64"   >> $GITHUB_OUTPUT ;;
+            armv7)   echo "platform=linux/arm/v7"  >> $GITHUB_OUTPUT ;;
+          esac
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./bonap/Dockerfile
+          platforms: ${{ steps.platform.outputs.platform }}
+          push: true
+          tags: |
+            ghcr.io/aymericlefeyer/bonap-ha-addon:latest-${{ matrix.arch }}
+          cache-from: type=gha,scope=${{ matrix.arch }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.arch }}
