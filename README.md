@@ -8,7 +8,7 @@ This repository contains [Home Assistant](https://www.home-assistant.io/) addons
 2. Click the **three-dot menu** (top right) and select **Repositories**
 3. Paste the following URL and click **Add**:
    ```
-   https://github.com/AymericLeFeyer/aylabs-ha-addons
+   https://github.com/AyLabsCode/aylabs-ha-addons
    ```
 4. Refresh the page — addons will appear in the store
 
