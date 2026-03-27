@@ -1,0 +1,44 @@
+name: Auto-update Bonap version
+
+on:
+  schedule:
+    - cron: "0 6 * * *"  # every day at 6am UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get latest Bonap version
+        id: bonap
+        run: |
+          LATEST=$(curl -s https://raw.githubusercontent.com/AymericLeFeyer/bonap/main/ha-addon/bonap/config.yaml \
+            | grep '^version:' | tr -d '"' | awk '{print $2}')
+          echo "version=$LATEST" >> $GITHUB_OUTPUT
+
+      - name: Get current version
+        id: current
+        run: |
+          CURRENT=$(grep '^version:' bonap/config.yaml | tr -d '"' | awk '{print $2}')
+          echo "version=$CURRENT" >> $GITHUB_OUTPUT
+
+      - name: Update config.yaml if new version
+        if: steps.bonap.outputs.version != steps.current.outputs.version
+        run: |
+          NEW="${{ steps.bonap.outputs.version }}"
+          sed -i "s/^version: \"[0-9.]*\"/version: \"${NEW}\"/" bonap/config.yaml
+
+      - name: Commit and push
+        if: steps.bonap.outputs.version != steps.current.outputs.version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bonap/config.yaml
+          git commit -m "chore: update Bonap to ${{ steps.bonap.outputs.version }}"
+          git push
