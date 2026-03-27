@@ -8,6 +8,11 @@ arch:
   - amd64
   - armv7
 image: ghcr.io/aymericlefeyer/bonap-ha-addon-{arch}
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: Bonap web interface
+webui: http://[HOST]:[PORT:3000]
 ingress: true
 ingress_port: 3000
 panel_icon: mdi:food-fork-drink
