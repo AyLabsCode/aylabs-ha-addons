@@ -8,7 +8,7 @@ This repository contains the [Home Assistant](https://www.home-assistant.io/) ad
 2. Click the **three-dot menu** (top right) and select **Repositories**
 3. Paste the following URL and click **Add**:
    ```
-   https://github.com/AymericLeFeyer/bonap
+   https://github.com/AymericLeFeyer/bonap-ha-addon
    ```
 4. Refresh the page — **Bonap** will appear in the store
 5. Click **Bonap → Install**
