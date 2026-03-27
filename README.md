@@ -1,6 +1,6 @@
 # AyLabs — Home Assistant Addons
 
-This repository contains [Home Assistant](https://www.home-assistant.io/) addons maintained by [AyLabs](https://github.com/AymericLeFeyer).
+This repository contains [Home Assistant](https://www.home-assistant.io/) addons maintained by [AyLabs](https://github.com/AyLabsCode).
 
 ## Installation
 
@@ -17,3 +17,4 @@ This repository contains [Home Assistant](https://www.home-assistant.io/) addons
 | Addon | Description |
 |---|---|
 | [Bonap](bonap/) | Ergonomic front-end for [Mealie](https://mealie.io) — recipes, meal planning, shopping list and AI suggestions |
+| [Mealie](mealie/) | Self-hosted recipe manager and meal planner *(unofficial addon)* |
