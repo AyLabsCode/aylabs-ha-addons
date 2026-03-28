@@ -1,5 +1,5 @@
 name: Bonap TRMNL
-version: "1.0.0"
+version: "1.0.1"
 slug: bonap-trmnl
 description: BFF Bonap — expose les données Mealie pour les templates TRMNL (e-ink display)
 url: https://github.com/AymericLeFeyer/bonap
