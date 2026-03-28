@@ -1,0 +1,20 @@
+name: Bonap TRMNL
+version: "1.0.0"
+slug: bonap-trmnl
+description: BFF Bonap — expose les données Mealie pour les templates TRMNL (e-ink display)
+url: https://github.com/AymericLeFeyer/bonap
+arch:
+  - amd64
+  - aarch64
+  - armv7
+ports:
+  3001/tcp: 3001
+ports_description:
+  3001/tcp: Bonap TRMNL API
+options:
+  mealie_url: ""
+  mealie_token: ""
+schema:
+  mealie_url: str
+  mealie_token: str
+image: ghcr.io/aymericlefeyer/bonap-trmnl-{arch}
