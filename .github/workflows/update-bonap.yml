@@ -13,12 +13,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get latest Bonap release
         id: bonap
         run: |
           LATEST=$(curl -s https://api.github.com/repos/AymericLeFeyer/bonap/releases/latest | jq -r '.tag_name')
+          LATEST="${LATEST#v}"
           echo "version=$LATEST" >> $GITHUB_OUTPUT
 
       - name: Get current version
@@ -30,9 +31,7 @@ jobs:
       - name: Update config.yaml if new version
         if: steps.bonap.outputs.version != steps.current.outputs.version
         run: |
-          SEMVER="${{ steps.bonap.outputs.version }}"
-          SEMVER="${SEMVER#v}"
-          sed -i "s/^version: \"[0-9.]*\"/version: \"${SEMVER}\"/" bonap/config.yaml
+          sed -i "s/^version: \"[0-9.]*\"/version: \"${{ steps.bonap.outputs.version }}\"/" bonap/config.yaml
 
       - name: Commit and push
         if: steps.bonap.outputs.version != steps.current.outputs.version
