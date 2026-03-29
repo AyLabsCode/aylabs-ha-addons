@@ -70,12 +70,14 @@ jobs:
 
       - name: Update config.yaml and CHANGELOG.md if new version
         if: steps.bonap.outputs.version != steps.current.outputs.version
+        env:
+          CHANGELOG_BODY: ${{ steps.changelog.outputs.body }}
         run: |
           VERSION="${{ steps.bonap.outputs.version }}"
           sed -i "s/^version: \"[0-9.]*\"/version: \"${VERSION}\"/" bonap/config.yaml
           CHANGELOG="bonap/CHANGELOG.md"
           touch "$CHANGELOG"
-          echo -e "## ${VERSION}\n\n${{ steps.changelog.outputs.body }}\n" | cat - "$CHANGELOG" > /tmp/changelog.md
+          printf "## %s\n\n%s\n\n" "$VERSION" "$CHANGELOG_BODY" | cat - "$CHANGELOG" > /tmp/changelog.md
           mv /tmp/changelog.md "$CHANGELOG"
 
       - name: Commit and push
