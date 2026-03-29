@@ -1,3 +1,14 @@
+## 1.0.38
+
+### Nouveautés
+
+- config LLM via variables d'env + fix crypto.randomUUID + version dans paramètres
+
+### Corrections
+
+- inverser couleurs icône TRMNL en light mode
+
+
 ## 1.0.37
 
 ### Nouveautés
