@@ -20,6 +20,14 @@ panel_title: Bonap
 options:
   mealie_url: ""
   mealie_token: ""
+  llm_provider: ""
+  llm_api_key: ""
+  llm_model: ""
+  llm_ollama_url: ""
 schema:
   mealie_url: str
   mealie_token: str
+  llm_provider: str?
+  llm_api_key: str?
+  llm_model: str?
+  llm_ollama_url: str?
