@@ -1,3 +1,11 @@
+## 1.0.39
+
+### Nouveautés
+
+- exposer les variables LLM dans window.__ENV__
+- bannière et verrouillage visuel pour les champs LLM gérés via env
+
+
 ## 1.0.38
 
 ### Nouveautés
