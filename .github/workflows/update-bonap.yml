@@ -21,11 +21,7 @@ jobs:
           RELEASE=$(curl -s https://api.github.com/repos/AymericLeFeyer/bonap/releases/latest)
           LATEST=$(echo "$RELEASE" | jq -r '.tag_name')
           LATEST="${LATEST#v}"
-          BODY=$(echo "$RELEASE" | jq -r '.body // ""')
           echo "version=$LATEST" >> $GITHUB_OUTPUT
-          echo "body<<EOF" >> $GITHUB_OUTPUT
-          echo "$BODY" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Get current version
         id: current
@@ -33,15 +29,53 @@ jobs:
           CURRENT=$(grep '^version:' bonap/config.yaml | tr -d '"' | awk '{print $2}')
           echo "version=$CURRENT" >> $GITHUB_OUTPUT
 
+      - name: Generate changelog from commits
+        id: changelog
+        if: steps.bonap.outputs.version != steps.current.outputs.version
+        run: |
+          PREV="v${{ steps.current.outputs.version }}"
+          NEXT="v${{ steps.bonap.outputs.version }}"
+
+          COMMITS=$(curl -s "https://api.github.com/repos/AymericLeFeyer/bonap/compare/${PREV}...${NEXT}" \
+            | jq -r '.commits[].commit.message')
+
+          FEATURES=""
+          FIXES=""
+
+          while IFS= read -r line; do
+            MSG=$(echo "$line" | head -1)
+            if echo "$MSG" | grep -qE '^\[skip ci\]|^\s*$'; then
+              continue
+            fi
+            if echo "$MSG" | grep -qE '^feat(\(.+\))?(\!)?:'; then
+              DESC=$(echo "$MSG" | sed -E 's/^feat(\([^)]*\))?(\!)?:\s*//')
+              FEATURES="${FEATURES}- ${DESC}\n"
+            elif echo "$MSG" | grep -qE '^fix(\(.+\))?(\!)?:'; then
+              DESC=$(echo "$MSG" | sed -E 's/^fix(\([^)]*\))?(\!)?:\s*//')
+              FIXES="${FIXES}- ${DESC}\n"
+            fi
+          done <<< "$COMMITS"
+
+          BODY=""
+          if [ -n "$FEATURES" ]; then
+            BODY="${BODY}### Nouveautés\n\n${FEATURES}\n"
+          fi
+          if [ -n "$FIXES" ]; then
+            BODY="${BODY}### Corrections\n\n${FIXES}\n"
+          fi
+
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          printf "%b" "$BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Update config.yaml and CHANGELOG.md if new version
         if: steps.bonap.outputs.version != steps.current.outputs.version
         run: |
           VERSION="${{ steps.bonap.outputs.version }}"
           sed -i "s/^version: \"[0-9.]*\"/version: \"${VERSION}\"/" bonap/config.yaml
-          # Prepend new entry to CHANGELOG.md
           CHANGELOG="bonap/CHANGELOG.md"
           touch "$CHANGELOG"
-          echo -e "## ${VERSION}\n\n${{ steps.bonap.outputs.body }}\n" | cat - "$CHANGELOG" > /tmp/changelog.md
+          echo -e "## ${VERSION}\n\n${{ steps.changelog.outputs.body }}\n" | cat - "$CHANGELOG" > /tmp/changelog.md
           mv /tmp/changelog.md "$CHANGELOG"
 
       - name: Commit and push
