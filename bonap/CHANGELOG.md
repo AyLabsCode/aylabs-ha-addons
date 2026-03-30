@@ -1,3 +1,14 @@
+## 1.0.40
+
+### Corrections
+
+- démarrer au jour actuel sur mobile
+- layout mobile côte à côte pour midi et soir
+- long press requis pour déclencher le drag sur mobile
+- dropdown d'actions au tap sur mobile
+- image seule dans la carte mobile (inclus dans fix 4)
+
+
 ## 1.0.39
 
 ### Nouveautés
