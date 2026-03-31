@@ -1,3 +1,10 @@
+## 1.0.41
+
+### Corrections
+
+- dropdown positionné au tap + drag sur image iOS
+
+
 ## 1.0.40
 
 ### Corrections
