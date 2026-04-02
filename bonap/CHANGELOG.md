@@ -1,3 +1,31 @@
+## 1.0.50
+
+### Nouveautés
+
+- ajout assets démo, badges, GIFs features et tab switcher vidéo/features
+- vidéo restaurée + lightbox GIF sur les cartes features
+- ajout suggestions.gif + séparation suggestions IA / assistant IA
+- add Mistral and Perplexity providers, fix Gemini
+- add planning button in recipe detail modal (#2)
+- add planning button in recipe drawer (#2)
+- icon-only buttons in drawer header on desktop
+- replace native title with Radix tooltip in drawer header (#2)
+- add arm64/v8 support for Raspberry Pi (#1)
+
+### Corrections
+
+- correction NavLink actif + embeds vidéo YouTube
+- déplacer la vidéo HA en haut de la page doc
+- readme
+- lightbox GIF élargi à 1200px
+- ajout proxy_ssl_server_name on pour support HTTPS upstream
+- suppression MEALIE_INTERNAL_URL + logo settings HA
+- readme
+- replace leftovers copy button with smart dropdown (#5)
+- reference issue fix Gemini/OpenAI proxy (#3)
+- fix nginx proxy and CRLF issues
+
+
 ## 1.0.41
 
 ### Corrections
