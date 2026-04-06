@@ -1,3 +1,14 @@
+## 1.0.54
+
+### Nouveautés
+
+- avertissement config IA stockée localement (fixes #7)
+
+### Corrections
+
+- corriger les erreurs TypeScript bloquant le build Docker
+
+
 ## 1.0.51
 
 ### Nouveautés
