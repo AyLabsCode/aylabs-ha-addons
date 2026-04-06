@@ -1,3 +1,15 @@
+## 1.0.51
+
+### Nouveautés
+
+- add OpenRouter as LLM provider
+- add OpenRouter as LLM provider
+
+### Corrections
+
+- remove trmnl from docker compose
+
+
 ## 1.0.50
 
 ### Nouveautés
