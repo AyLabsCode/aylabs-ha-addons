@@ -1,3 +1,21 @@
+## 1.0.57
+
+### Nouveautés
+
+- add Dockerfile for development environment
+- add login page and protect dashboard routes
+- add auth domain layer with login use case
+- update login form with username/password and use login use case
+- add logout functionality with button in settings
+- update login page title and description
+- make route protection optional via VITE_PROTECTED_ROUTE env
+
+### Corrections
+
+- fetch-depth 0 pour git-cliff dans le job release
+- ajouter les imports manquants (useNavigate, LogOut, logoutUseCase)
+
+
 ## 1.0.54
 
 ### Nouveautés
