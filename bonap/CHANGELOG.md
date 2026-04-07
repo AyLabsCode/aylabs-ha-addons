@@ -1,3 +1,13 @@
+## 1.0.62
+
+### Corrections
+
+- corriger toutes les erreurs ESLint pour faire passer la CI
+- corriger toutes les erreurs ESLint pour faire passer la CI
+- renommer Catégories en Étiquettes et respecter l'ordre Mealie
+- étiquettes — renommer Catégories et respecter l'ordre Mealie
+
+
 ## 1.0.57
 
 ### Nouveautés
