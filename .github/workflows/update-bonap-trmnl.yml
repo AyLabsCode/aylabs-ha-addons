@@ -19,8 +19,8 @@ jobs:
         id: bff
         run: |
           RELEASE=$(curl -s https://api.github.com/repos/AymericLeFeyer/bonap/releases \
-            | jq '[.[] | select(.tag_name | startswith("bff-v"))][0]')
-          VERSION=$(echo "$RELEASE" | jq -r '.tag_name // empty' | sed 's/^bff-v//')
+            | jq '[.[] | select(.tag_name | startswith("bonap-trmnl-v"))][0]')
+          VERSION=$(echo "$RELEASE" | jq -r '.tag_name // empty' | sed 's/^bonap-trmnl-v//')
           if [ -z "$VERSION" ]; then
             echo "Aucune release bff-v trouvée, abandon."
             exit 1
