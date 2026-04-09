@@ -1,3 +1,23 @@
+## 1.0.65
+
+### Nouveautés
+
+- ajouter la section Fonctionnalités dans la sidebar et les routes
+- ajouter les 7 pages de documentation des fonctionnalités
+- ajouter la section Fonctionnalités dans la documentation
+- fetch dynamique des modèles après validation de la clé API
+- avertissement si LLM non configuré dans l'assistant et les suggestions
+- documenter l'obtention des clés API pour chaque provider LLM
+- documentation clés API pour chaque provider LLM
+
+### Corrections
+
+- mettre à jour les modèles Gemini vers la gamme 2.5
+- filtrer les modèles Gemini dépréciés/versionnés
+- préciser le sélecteur du lien Paramètres en mode strict
+- modèles Gemini 2.5 + fetch dynamique des modèles via API
+
+
 ## 1.0.63
 
 ### Corrections
