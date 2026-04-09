@@ -18,9 +18,8 @@ jobs:
       - name: Get latest BFF release
         id: bff
         run: |
-          VERSION=$(curl -s "https://api.github.com/repos/AymericLeFeyer/bonap/tags?per_page=100" \
-            | jq -r '[.[] | select(.name | startswith("bff-v"))][0].name // empty' \
-            | sed 's/^bff-v//')
+          VERSION=$(git ls-remote --tags https://github.com/AymericLeFeyer/bonap 'refs/tags/bff-v*' \
+            | awk '{print $2}' | sed 's|refs/tags/bff-v||' | sort -V | tail -1)
           if [ -z "$VERSION" ]; then
             echo "Aucune release bff-v trouvée, abandon."
             exit 1
