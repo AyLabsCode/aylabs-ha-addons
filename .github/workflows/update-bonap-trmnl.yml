@@ -18,18 +18,14 @@ jobs:
       - name: Get latest BFF release
         id: bff
         run: |
-          RELEASE=$(curl -s https://api.github.com/repos/AymericLeFeyer/bonap/releases \
-            | jq '[.[] | select(.tag_name | startswith("bonap-trmnl-v"))][0]')
-          VERSION=$(echo "$RELEASE" | jq -r '.tag_name // empty' | sed 's/^bonap-trmnl-v//')
+          VERSION=$(curl -s "https://api.github.com/repos/AymericLeFeyer/bonap/tags?per_page=100" \
+            | jq -r '[.[] | select(.name | startswith("bff-v"))][0].name // empty' \
+            | sed 's/^bff-v//')
           if [ -z "$VERSION" ]; then
             echo "Aucune release bff-v trouvée, abandon."
             exit 1
           fi
-          BODY=$(echo "$RELEASE" | jq -r '.body // ""')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "body<<EOF" >> $GITHUB_OUTPUT
-          echo "$BODY" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Get current version
         id: current
@@ -39,14 +35,12 @@ jobs:
 
       - name: Update config.yaml and CHANGELOG.md if new version
         if: steps.bff.outputs.version != steps.current.outputs.version
-        env:
-          CHANGELOG_BODY: ${{ steps.bff.outputs.body }}
         run: |
           VERSION="${{ steps.bff.outputs.version }}"
           sed -i "s/^version: \"[0-9.]*\"/version: \"${VERSION}\"/" bonap-trmnl/config.yaml
           CHANGELOG="bonap-trmnl/CHANGELOG.md"
           touch "$CHANGELOG"
-          printf "## %s\n\n%s\n\n" "$VERSION" "$CHANGELOG_BODY" | cat - "$CHANGELOG" > /tmp/changelog.md
+          printf "## %s\n\n" "$VERSION" | cat - "$CHANGELOG" > /tmp/changelog.md
           mv /tmp/changelog.md "$CHANGELOG"
 
       - name: Commit and push
