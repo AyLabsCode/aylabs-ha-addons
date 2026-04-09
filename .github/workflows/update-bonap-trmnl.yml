@@ -20,7 +20,11 @@ jobs:
         run: |
           RELEASE=$(curl -s https://api.github.com/repos/AymericLeFeyer/bonap/releases \
             | jq '[.[] | select(.tag_name | startswith("bff-v"))][0]')
-          VERSION=$(echo "$RELEASE" | jq -r '.tag_name' | sed 's/^bff-v//')
+          VERSION=$(echo "$RELEASE" | jq -r '.tag_name // empty' | sed 's/^bff-v//')
+          if [ -z "$VERSION" ]; then
+            echo "Aucune release bff-v trouvée, abandon."
+            exit 1
+          fi
           BODY=$(echo "$RELEASE" | jq -r '.body // ""')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "body<<EOF" >> $GITHUB_OUTPUT
