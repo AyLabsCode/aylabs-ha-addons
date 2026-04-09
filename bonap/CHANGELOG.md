@@ -1,3 +1,17 @@
+## 1.0.66
+
+### Nouveautés
+
+- ajouter l'aide à la configuration LLM dans les paramètres
+- ajouter les liens dans la section À propos
+- sections collapsibles + À propos déplacé en dernier
+- aide à la configuration LLM directement dans les paramètres
+
+### Corrections
+
+- désactiver le fetch dynamique pour Google Gemini
+
+
 ## 1.0.65
 
 ### Nouveautés
