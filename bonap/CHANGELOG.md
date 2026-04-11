@@ -1,3 +1,16 @@
+## 1.0.68
+
+### Nouveautés
+
+- add plan button on never-planned recipes
+- add per-meal note via Mealie text field
+- add per-meal note
+
+### Corrections
+
+- carry note over when drag & dropping a meal
+
+
 ## 1.0.66
 
 ### Nouveautés
