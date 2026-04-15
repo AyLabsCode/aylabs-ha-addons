@@ -1,3 +1,23 @@
+## 1.1.1
+
+### Nouveautés
+
+- add day picker for shopping cart generation
+- show next 14 days in shopping cart day picker
+- add breakfast support with toggle in settings
+- render markdown in instructions, description and cooking mode
+
+### Corrections
+
+- display day picker in 2-column grid to reduce height
+- uncheck days without meals by default in day picker
+- wrap ReactMarkdown in div instead of using className prop
+- show recipe name overlay on mobile meal cards
+- remove unused MealTypeKey, add missing useEffect dep
+- use dynamic dates in planning fixtures
+- bulk issues #36 #37 #40 #41
+
+
 ## 1.0.68
 
 ### Nouveautés
