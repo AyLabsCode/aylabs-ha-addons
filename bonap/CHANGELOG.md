@@ -1,3 +1,28 @@
+## 1.1.5
+
+### Nouveautés
+
+- CIQUAL nutrition mapping and nutrition save fixes
+- servings from household size + cooking mode scaling
+- add feature flags for nutrition, servings and auto-planning
+
+### Corrections
+
+- restore missing files and recipeYield typing for docker build
+- expose explore page in desktop and mobile navigation
+- restore ollama model fetch and household size controls
+- enable marmiton proxy in standard docker and dev runtime
+- harden marmiton image import and prevent duplicate imports
+- enable marmiton proxy and align search import fallback
+- resolve lint whitespace and stabilize planning e2e fixture dates
+- exclude breakfast from auto-plan slots to match AutoPlanSlot type
+- improve auto-plan diversity with extended recipe pool and fix nutrition normalization per serving
+- allow underscore-prefixed unused args in ESLint config
+- rétablir Marmiton (standard + addon HA), fiabiliser import image et éviter les doublons
+- hide missing servings warning when servings feature is disabled
+- remove unused Users import
+
+
 ## 1.1.1
 
 ### Nouveautés
