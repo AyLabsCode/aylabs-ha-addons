@@ -1,3 +1,19 @@
+## 1.1.6
+
+### Nouveautés
+
+- reorder sections and collapse all by default
+- add leftover copy button on mobile view
+- move AI categorize button to progress bar
+- mobile leftover copy & AI label button in progress bar
+
+### Corrections
+
+- include note-type meals in leftover copy
+- fix mobile leftover copy button always unresponsive
+- fix leftover select silently ignored on mobile
+
+
 ## 1.1.5
 
 ### Nouveautés
