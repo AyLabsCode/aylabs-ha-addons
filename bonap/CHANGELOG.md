@@ -1,3 +1,29 @@
+## 1.1.8
+
+### Nouveautés
+
+- sync des parametres multi-origines + fix proxy Ollama
+- sync des parametres multi-origines + fix proxy Ollama
+- afficher le jour de la semaine associé à chaque recette dans la liste de courses
+- remplace le sélecteur de jours par un mode sélection inline sur les cartes repas
+- ajoute le support PWA (manifest + meta tags)
+- catalogue d'habituels par défaut avec catégories collapsibles
+- catalogue par défaut habituels via modale
+
+### Corrections
+
+- corrections portions, images, durees et boucle infinie calorie-tag
+- compression automatique des images avant upload vers Mealie
+- bff
+- ajoute le rendu des images dans MarkdownContent
+- supporte le HTML brut dans les instructions (rehype-raw)
+- supprime DialogDescription inutilisé + corrige test Playwright
+- bouton Aujourd'hui centre sur la date du jour en vue 3j/5j
+- icône ShoppingCart pour la section liste de courses
+- corrige le rewrite du proxy /api/bonap vers le BFF
+- bugs & améliorations (PWA, sélection panier, images, upload)
+
+
 ## 1.1.6
 
 ### Nouveautés
