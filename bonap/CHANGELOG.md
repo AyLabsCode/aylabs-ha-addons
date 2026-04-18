@@ -1,3 +1,11 @@
+## 1.1.9
+
+### Corrections
+
+- affiche les images sans dépendre du champ recipe.image
+- affiche les images sans dépendre du champ recipe.image
+
+
 ## 1.1.8
 
 ### Nouveautés
