@@ -1,3 +1,11 @@
+## 1.1.10
+
+### Corrections
+
+- nutrition estimate 405, servings sync and ollama-proxy wildcard
+- nutrition estimate 405, servings sync and ollama-proxy wildcard
+
+
 ## 1.1.9
 
 ### Corrections
