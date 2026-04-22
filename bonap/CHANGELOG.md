@@ -1,3 +1,19 @@
+## 1.1.11
+
+### Nouveautés
+
+- export PDF / impression de la liste de courses
+
+### Corrections
+
+- retour visuel immédiat, delete mobile et fruits/légumes
+- masquer le bouton IA et afficher en 3 colonnes
+- 3 colonnes par catégorie, retour à la ligne entre catégories
+- iframe temporaire pour éviter les conflits e2e
+- réduire les marges du PDF (2cm → 0.5cm/0.8cm)
+- retour visuel, delete mobile et fruits/légumes
+
+
 ## 1.1.10
 
 ### Corrections
