@@ -1,3 +1,17 @@
+## 1.2.0
+
+### Nouveautés
+
+- add global ErrorBoundary to prevent white-screen crashes
+- timeout + retry avec backoff exponentiel sur MealieApiClient
+
+### Corrections
+
+- disable react-hooks/set-state-in-effect (v7 new rule, patterns are intentional)
+- disable react-hooks/refs (v7 new rule, ref sync during render is intentional)
+- remplace Github (supprimé dans lucide-react v1) par SVG inline
+
+
 ## 1.1.11
 
 ### Nouveautés
