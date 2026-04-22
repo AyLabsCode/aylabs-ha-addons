@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "0 6 * * *"  # every day at 6am UTC
   workflow_dispatch:
+  repository_dispatch:
+    types: [bonap-released]
 
 jobs:
   update:
