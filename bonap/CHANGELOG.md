@@ -1,3 +1,38 @@
+## 1.2.2
+
+### Nouveautés
+
+- add kiosk mode for tablet display (#88)
+- improve kiosk mode UX and settings
+- mode kiosk pour tablette (#88)
+- simple meal creation, emoji illustrations, tag filter (#89)
+- add emoji picker in recipe detail edit page
+- emoji recette — stockage localStorage + lazy fetch sur erreur image
+- affiche emoji (+ fallback 🍽️) dans planning et kiosk si pas d'image
+- repas simples, emojis, filtre tag simple (#89)
+
+### Corrections
+
+- today button places current day in first column
+- use named wildcard parameter for ollama-proxy route
+- bff
+- today button places current day in first column
+- remove category tags, align "Pas d'image" style with "Rien de prévu"
+- fix TS type error on getNextMealKey parameter
+- prevent dialog close when clicking autocomplete suggestion
+- show emoji when recipe.image is absent, not only on load error
+- revert recipe.image check, use onError only
+- remove default plate emoji, show designated emoji only
+- fix autocomplete in dialog, simple recipe UX, delete image
+- remove unused CookingPot import, add portalContainer to useEffect deps
+- add missing cn import in RecipeFormDialog
+- fix selectors and fixture keys in simple-recipe and kiosk tests
+- fix button selector and image mock in e2e tests
+- handle GET mealplans in last simple-recipe test mock
+- mock PUT (not PATCH) for recipe update in simple-recipe test
+- use npm install instead of npm ci in ha-addon Dockerfile
+
+
 ## 1.2.0
 
 ### Nouveautés
