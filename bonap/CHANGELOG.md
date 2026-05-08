@@ -1,3 +1,15 @@
+## 1.3.0
+
+### Corrections
+
+- support Android 7 WebView with legacy ES5 build
+- support Android 7 WebView with legacy ES5 build
+- filter out unsupported emojis on older Windows/WebView
+- filter out unsupported emojis on older Windows/WebView
+- show emoji fallback for simple recipes in mobile view
+- show emoji fallback for simple recipes in mobile view
+
+
 ## 1.2.2
 
 ### Nouveautés
