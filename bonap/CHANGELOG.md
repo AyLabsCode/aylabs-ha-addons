@@ -1,3 +1,15 @@
+## 1.3.1
+
+### Corrections
+
+- use food field for habituels instead of note only
+- use food field for habituels instead of note only
+- catch AbortError and surface a readable timeout message
+- catch AbortError and surface a readable timeout message
+- add compatibility hint below emoji picker
+- add compatibility hint below emoji picker
+
+
 ## 1.3.0
 
 ### Corrections
