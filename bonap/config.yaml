@@ -27,7 +27,7 @@ options:
 schema:
   mealie_url: str
   mealie_token: str
-  llm_provider: str?
+  llm_provider: "list(openai|anthropic|ollama|mistral|google|openrouter|perplexity)?"
   llm_api_key: str?
   llm_model: str?
   llm_ollama_url: str?
