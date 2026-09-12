@@ -1,3 +1,15 @@
+## 1.4.3
+
+### Corrections
+
+- format units the same way as the shopping list
+- afficher les unités comme la liste de courses (abréviation et pluriel)
+- SSRF du BFF, token Mealie côté serveur, settings et clés IA
+- display quantities in the most readable metric unit
+- SSRF du BFF, token Mealie côté serveur, settings et cl…
+- afficher les quantités dans l'unité métrique la plus lisible
+
+
 ## 1.4.2
 
 ### Nouveautés
