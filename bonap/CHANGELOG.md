@@ -1,3 +1,18 @@
+## 1.5.0
+
+### Nouveautés
+
+- automatic CIQUAL matching with shared food dictionary
+- convert imperial and US units, use unit abbreviation
+- add Perplexity integration attribution
+- add Perplexity integration attribution
+
+### Corrections
+
+- use Mealie quantity when the note has none
+- automatic CIQUAL ingredient matching design
+
+
 ## 1.4.3
 
 ### Corrections
