@@ -1,3 +1,11 @@
+## 1.6.0
+
+### Nouveautés
+
+- starter / main / dessert courses on recipes and meal plans
+- entrée / plat / dessert sur les recettes et le planning
+
+
 ## 1.5.0
 
 ### Nouveautés
