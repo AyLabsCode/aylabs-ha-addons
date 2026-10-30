@@ -19,10 +19,16 @@ jobs:
 
       - name: Get latest Bonap release
         id: bonap
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          RELEASE=$(curl -s https://api.github.com/repos/AymericLeFeyer/bonap/releases/latest)
+          RELEASE=$(curl -s -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/repos/AymericLeFeyer/bonap/releases/latest)
           LATEST=$(echo "$RELEASE" | jq -r '.tag_name')
           LATEST="${LATEST#v}"
+          if ! [[ "$LATEST" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+            echo "Version Bonap invalide reçue de l'API GitHub : '$LATEST', abandon."
+            exit 1
+          fi
           echo "version=$LATEST" >> $GITHUB_OUTPUT
 
       - name: Get current version
@@ -34,11 +40,13 @@ jobs:
       - name: Generate changelog from commits
         id: changelog
         if: steps.bonap.outputs.version != steps.current.outputs.version
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           PREV="v${{ steps.current.outputs.version }}"
           NEXT="v${{ steps.bonap.outputs.version }}"
 
-          COMMITS=$(curl -s "https://api.github.com/repos/AymericLeFeyer/bonap/compare/${PREV}...${NEXT}" \
+          COMMITS=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "https://api.github.com/repos/AymericLeFeyer/bonap/compare/${PREV}...${NEXT}" \
             | jq -r '.commits[].commit.message')
 
           FEATURES=""
