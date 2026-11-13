@@ -1,3 +1,20 @@
+## 1.6.7
+
+### Nouveautés
+
+- analytics Aynalytics sur le site vitrine
+- choisir les portions sur la fiche recette
+- imprimer une recette
+- filtrer les recettes par ustensile
+- invités des repas
+- sept micronutriments CIQUAL sur la fiche recette (#205)
+
+### Corrections
+
+- test de connexion Mistral et Perplexity
+- œuf et cuisse de poulet comptés à la pièce
+
+
 ## 1.6.0
 
 ### Nouveautés
